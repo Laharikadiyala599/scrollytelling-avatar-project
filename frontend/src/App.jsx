@@ -3,7 +3,9 @@ import "./App.css";
 
 function App() {
   const [slides, setSlides] = useState([]);
+  const [currentSlide, setCurrentSlide] = useState(1);
   const sectionRefs = useRef([]);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     fetch("/slides.json")
@@ -14,33 +16,33 @@ function App() {
   useEffect(() => {
     if (!slides.length) return;
 
-    const synth = window.speechSynthesis;
-    let currentUtterance = null;
+    const playSlideAudio = (slideNumber) => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
 
-    const speakSlide = (text) => {
-      synth.cancel();
-      currentUtterance = new SpeechSynthesisUtterance(text);
-      currentUtterance.rate = 1;
-      currentUtterance.pitch = 1;
-      currentUtterance.volume = 1;
-      synth.speak(currentUtterance);
+      const audio = new Audio(`/avatars/slide_${slideNumber}.mp3`);
+      audioRef.current = audio;
+      audio.play().catch((err) => {
+        console.log("Audio play blocked until user interacts:", err);
+      });
     };
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const slideIndex = Number(entry.target.dataset.index);
-            const slide = slides[slideIndex];
-            if (slide?.avatar_script) {
-              speakSlide(slide.avatar_script);
+            const index = Number(entry.target.dataset.index);
+            const slide = slides[index];
+            if (slide) {
+              setCurrentSlide(slide.slide_number);
+              playSlideAudio(slide.slide_number);
             }
           }
         });
       },
-      {
-        threshold: 0.6,
-      }
+      { threshold: 0.6 }
     );
 
     sectionRefs.current.forEach((section) => {
@@ -49,12 +51,26 @@ function App() {
 
     return () => {
       observer.disconnect();
-      synth.cancel();
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
     };
   }, [slides]);
 
   return (
     <div className="app">
+      <div className="avatar-panel">
+<video
+  key={currentSlide}
+  autoPlay
+  muted
+  playsInline
+  className="avatar-image"
+>
+  <source src={`/avatars/avatar_slide_${currentSlide}.webm`} type="video/webm" />
+</video>
+  <p>AI Presenter</p>
+</div>
       {slides.map((slide, index) => (
         <section
           key={slide.slide_number}

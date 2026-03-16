@@ -1,0 +1,25 @@
+{
+  "id": "test-slide-3",
+  "status": "NotStarted",
+  "createdDateTime": "2026-03-16T14:46:40.5688108Z",
+  "lastActionDateTime": "2026-03-16T14:46:40.5688109Z",
+  "inputKind": "PlainText",
+  "customVoices": {},
+  "properties": {
+    "timeToLiveInHours": 744
+  },
+  "synthesisConfig": {
+    "voice": "en-US-JennyNeural"
+  },
+  "avatarConfig": {
+    "talkingAvatarCharacter": "lisa",
+    "talkingAvatarStyle": "casual-sitting",
+    "videoFormat": "Webm",
+    "videoCodec": "vp9",
+    "subtitleType": "soft_embedded",
+    "backgroundColor": "#00000000",
+    "bitrateKbps": 2000,
+    "customized": false,
+    "useBuiltInVoice": false
+  }
+}
