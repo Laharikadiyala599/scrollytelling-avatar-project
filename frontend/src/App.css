@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+}
+
+.app {
+  width: 100%;
+}
+
+.slide-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.slide-card {
+  background: white;
+  width: 80%;
+  max-width: 1000px;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+.slide-image {
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.slide-text {
+  margin-top: 20px;
+}
+
+.slide-text h2 {
+  margin-bottom: 12px;
+}
+
+.slide-text p {
+  font-size: 20px;
+  line-height: 1.6;
+}

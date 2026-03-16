@@ -1,0 +1,17 @@
+[
+  {
+    "slide_number": 1,
+    "image_path": "/slides/Slide1.PNG",
+    "avatar_script": "Welcome to the Q3 market landscape report."
+  },
+  {
+    "slide_number": 2,
+    "image_path": "/slides/Slide2.PNG",
+    "avatar_script": "This slide explains how the market has grown over the past year."
+  },
+  {
+    "slide_number": 3,
+    "image_path": "/slides/Slide3.PNG",
+    "avatar_script": "Here we discuss expected trends for the next quarter."
+  }
+]
